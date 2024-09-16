@@ -1,3 +1,5 @@
+import 'package:chatflutter/controleur/message_controleur.dart';
+import 'package:chatflutter/database/database.dart';
 import 'package:chatflutter/model/message.dart';
 import 'vue_liste_message.dart';
 import 'package:chatflutter/vue/vue_envoyer_message.dart';
@@ -15,18 +17,28 @@ class PagePrincipale extends StatefulWidget{
 class _PagePrincipaleState extends State<PagePrincipale> {
   List<Message>? messages;
 
+  final MessageControleur _messageControleur = MessageControleur();
+
   @override
   void initState() {
     super.initState();
 
     messages = [];
+    _loadMessage();
   }
 
-  void _sauvegarderMessage(String alias, String message)
-  {
+  Future<void> _loadMessage() async {
+    var nouveauxMessages = await _messageControleur.getMessages();
+
     setState(() {
-      messages?.add(Message(alias: alias, message: message));
+      messages = nouveauxMessages;
     });
+  }
+
+  Future<void> _sauvegarderMessage(String alias, String message) async {
+    await _messageControleur.sauvegarderMessage(Message(alias: alias, message: message));
+    
+    _loadMessage();
   }
 
   @override

@@ -12,7 +12,7 @@ class VueListeMessage extends StatelessWidget {
         children: [
           for(var message in messages)
             Row(
-              key: Key('listeMessage${messages.indexOf(message)}'),
+              key: Key('listeMessage${message.id}'),
               children: [Text(message.toString())],
             )
         ],

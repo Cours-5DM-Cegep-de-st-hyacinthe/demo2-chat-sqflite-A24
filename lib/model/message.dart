@@ -1,6 +1,7 @@
 class Message {
-  const Message({required this.alias, required this.message});
+  const Message({this.id, required this.alias, required this.message});
 
+  final int? id;
   final String alias;
   final String message;
 
@@ -8,4 +9,17 @@ class Message {
   String toString() {
     return 'Alias: $alias, Message: $message';
   }
+
+  Map<String, dynamic> toMap() {
+      return {
+        'id': id,
+        'alias': alias,
+        'message': message
+      };
+  }
+
+  Message.fromMap(Map<String, dynamic> messageMap):
+    id = messageMap['id'],
+    alias = messageMap['alias'],
+    message = messageMap['message'];
 }
