@@ -1,5 +1,4 @@
 import 'package:chatflutter/controleur/message_controleur.dart';
-import 'package:chatflutter/database/database.dart';
 import 'package:chatflutter/model/message.dart';
 import 'vue_liste_message.dart';
 import 'package:chatflutter/vue/vue_envoyer_message.dart';
